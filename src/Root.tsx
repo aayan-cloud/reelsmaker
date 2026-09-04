@@ -6,6 +6,7 @@ import { beats as metaAdLibrary } from './reels/meta-ad-library/script';
 import { WorkflowTour, TOUR_SECONDS } from './reels/workflow-tour/Tour';
 import { beats as repurposer } from './reels/repurposer/script';
 import { beats as reelsmaker } from './reels/reelsmaker/script';
+import { FbCover } from './reels/reelsmaker/cover';
 import { K } from './engine/kinetic';
 
 const FPS = 30;
@@ -74,6 +75,9 @@ export const RemotionRoot: React.FC = () => (
       width={1080}
       height={1920}
     />
+    {/* Facebook Page cover. Same engine as the reels, so the Page and the
+        videos read as one thing. */}
+    <Composition id="FbCover" component={FbCover} durationInFrames={1} fps={FPS} width={1640} height={856} />
     <Composition
       id="Reelsmaker"
       component={Reelsmaker}
