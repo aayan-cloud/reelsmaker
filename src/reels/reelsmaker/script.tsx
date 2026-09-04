@@ -2,6 +2,7 @@ import React from 'react';
 import { AbsoluteFill, OffthreadVideo, staticFile } from 'remotion';
 import type { Beat } from '../../engine/Reel';
 import { FrameSequence, ScreenCard, CodeCard, Statement } from '../../engine/screen';
+import { Stage } from '../../engine/kinetic';
 import D from '../../../tools/vo-durations.reelsmaker.json';
 
 /**
@@ -60,7 +61,7 @@ export const beats: Beat[] = [
     look: 'clean',
     sfx: [{ src: 'sfx/whoosh.wav', at: 0, volume: 0.3 }],
     Visual: () => (
-      <AbsoluteFill style={{ backgroundColor: '#08080b' }}>
+      <Stage>
         <CodeCard code={REAL_CODE} y={-9} width={88} size={28} />
         <ScreenCard y={27} width={82} tilt={-1.2} index={1}>
           <OffthreadVideo
@@ -70,7 +71,7 @@ export const beats: Beat[] = [
           />
         </ScreenCard>
         <Statement lines={['this reel', 'is a text file']} y={-40} size={84} hot={1} accent="#5b8cff" />
-      </AbsoluteFill>
+      </Stage>
     ),
   },
 
@@ -82,7 +83,7 @@ export const beats: Beat[] = [
     look: 'clean',
     sfx: [{ src: 'sfx/tick.wav', at: 0.1, volume: 0.35 }],
     Visual: () => (
-      <AbsoluteFill style={{ backgroundColor: '#08080b' }}>
+      <Stage>
         <ScreenCard y={-4} width={96}>
           <FrameSequence dir="shots/studio-play" count={40} playFps={4} drift={0.05} />
         </ScreenCard>
@@ -91,7 +92,7 @@ export const beats: Beat[] = [
             it: the timeline is generated from the beats array. Writing a line the
             footage contradicts is the fastest way to lose a viewer. */}
         <Statement lines={['nothing here', 'was dragged.']} y={27} size={86} hot={1} accent="#5b8cff" />
-      </AbsoluteFill>
+      </Stage>
     ),
   },
 
@@ -103,10 +104,10 @@ export const beats: Beat[] = [
     look: 'clean',
     sfx: [{ src: 'sfx/impact.wav', at: 0, volume: 0.4 }],
     Visual: () => (
-      <AbsoluteFill style={{ backgroundColor: '#08080b' }}>
+      <Stage>
         <CodeCard code={'npx remotion render Repurposer'} y={-10} width={90} size={36} />
         <Statement lines={['a finished reel', 'in 94 seconds']} y={10} size={92} hot={1} accent="#2ecc8f" />
-      </AbsoluteFill>
+      </Stage>
     ),
   },
 
@@ -118,12 +119,12 @@ export const beats: Beat[] = [
     look: 'clean',
     sfx: [{ src: 'sfx/riser.wav', at: 0.2, volume: 0.25 }],
     Visual: () => (
-      <AbsoluteFill style={{ backgroundColor: '#08080b' }}>
+      <Stage>
         <ScreenCard y={-6} width={96}>
           <FrameSequence dir="shots/repo-scroll" count={36} playFps={9} loop={false} />
         </ScreenCard>
         <Statement lines={['free.', 'open source.']} y={30} size={88} hot={1} accent="#5b8cff" />
-      </AbsoluteFill>
+      </Stage>
     ),
   },
 
@@ -137,7 +138,7 @@ export const beats: Beat[] = [
     look: 'clean',
     sfx: [{ src: 'sfx/sub.wav', at: 0, volume: 0.4 }],
     Visual: () => (
-      <AbsoluteFill style={{ backgroundColor: '#08080b' }}>
+      <Stage>
         <Statement lines={['comment', 'REELS']} y={-10} size={128} hot={1} accent="#5b8cff" />
         <Statement lines={['and it lands in your DMs']} y={7} size={44} />
         <AbsoluteFill style={{ justifyContent: 'flex-end', alignItems: 'center', paddingBottom: '18%' }}>
@@ -145,7 +146,7 @@ export const beats: Beat[] = [
             @aayanrealm
           </div>
         </AbsoluteFill>
-      </AbsoluteFill>
+      </Stage>
     ),
   },
 ];

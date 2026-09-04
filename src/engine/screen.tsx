@@ -74,11 +74,15 @@ export const ScreenCard: React.FC<{
         style={{
           width: `${width}%`,
           aspectRatio: '16 / 9',
-          borderRadius: 18,
+          borderRadius: 22,
           overflow: 'hidden',
           position: 'relative',
-          border: '1px solid rgba(255,255,255,0.14)',
-          boxShadow: '0 50px 110px rgba(0,0,0,0.75)',
+          // Frosted rim: a bright hairline on top, a dark one underneath. That
+          // pair is what reads as glass; a single flat border reads as a box.
+          border: '1px solid rgba(255,255,255,0.18)',
+          boxShadow:
+            '0 40px 120px rgba(0,0,0,0.8), 0 0 90px rgba(91,140,255,0.22), ' +
+            'inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(0,0,0,0.4)',
           opacity: s,
           transform: `rotate(${tilt}deg) perspective(1600px) rotateX(${(1 - s) * 18}deg) translateY(${(1 - s) * 70}px)`,
         }}
@@ -112,11 +116,14 @@ export const CodeCard: React.FC<{
       <div
         style={{
           width: `${width}%`,
-          background: '#0d1117',
-          border: '1px solid rgba(255,255,255,0.12)',
-          borderRadius: 18,
-          padding: '30px 28px',
-          boxShadow: '0 40px 90px rgba(0,0,0,0.7)',
+          background: 'linear-gradient(160deg, rgba(22,26,38,0.82), rgba(10,12,18,0.78))',
+          backdropFilter: 'blur(26px)',
+          border: '1px solid rgba(255,255,255,0.16)',
+          borderRadius: 22,
+          padding: '32px 30px',
+          boxShadow:
+            '0 40px 100px rgba(0,0,0,0.72), 0 0 70px rgba(91,140,255,0.16), ' +
+            'inset 0 1px 0 rgba(255,255,255,0.22)',
           fontFamily: MONO,
           fontSize: size,
           lineHeight: 1.5,

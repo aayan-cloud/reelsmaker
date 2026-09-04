@@ -46,24 +46,89 @@ export const K = {
 const SANS = 'Segoe UI, -apple-system, Helvetica Neue, Arial, sans-serif';
 const MONO = 'Consolas, Menlo, monospace';
 
-/** Near-black stage with a soft off-centre glow, or a bright one. */
+/**
+ * The ground everything sits on.
+ *
+ * A flat near-black fill is the single thing that makes a keynote reel look
+ * cheap: nothing moves, so the eye reads it as a slide rather than a shot. This
+ * is three coloured blobs drifting on separate sine periods, well under the
+ * background, plus a vignette to stop the corners lifting.
+ *
+ * The periods are deliberately not multiples of each other. Coprime-ish rates
+ * mean the composition never visibly repeats inside a reel, which is the
+ * difference between "alive" and "looping wallpaper".
+ */
 export const Stage: React.FC<{ light?: boolean; children?: React.ReactNode }> = ({
   light = false,
   children,
 }) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
-  // The glow drifts. A perfectly static gradient behind moving type is the
-  // thing that makes a scene feel like a slide.
   const t = interpolate(frame, [0, durationInFrames], [0, 1], { extrapolateRight: 'clamp' });
 
+  if (light) {
+    return (
+      <AbsoluteFill style={{ backgroundColor: K.paper, overflow: 'hidden' }}>
+        <AbsoluteFill
+          style={{
+            background: `radial-gradient(ellipse 80% 55% at ${42 + t * 12}% ${30 + t * 8}%, #ffffff, ${K.paperEdge})`,
+          }}
+        />
+        {children}
+      </AbsoluteFill>
+    );
+  }
+
+  // Slow drift. Each blob gets its own period and phase so they separate and
+  // recombine instead of sliding as one sheet.
+  const blob = (period: number, phase: number, ax: number, ay: number) => ({
+    x: 50 + Math.sin(frame / period + phase) * ax,
+    y: 50 + Math.cos(frame / (period * 1.37) + phase) * ay,
+  });
+  const a = blob(190, 0, 34, 26);
+  const b = blob(260, 2.1, 38, 30);
+  const c = blob(150, 4.2, 30, 34);
+
   return (
-    <AbsoluteFill style={{ backgroundColor: light ? K.paper : K.ink, overflow: 'hidden' }}>
+    <AbsoluteFill style={{ backgroundColor: K.ink, overflow: 'hidden' }}>
+      {/* Base lift, so the blobs are not sitting on pure black. */}
       <AbsoluteFill
         style={{
-          background: light
-            ? `radial-gradient(ellipse 80% 55% at ${42 + t * 12}% ${30 + t * 8}%, #ffffff, ${K.paperEdge})`
-            : `radial-gradient(ellipse 70% 50% at ${38 + t * 16}% ${34 + t * 10}%, #1a1c26, ${K.ink} 70%)`,
+          background: `radial-gradient(ellipse 75% 55% at ${44 + t * 12}% ${36 + t * 8}%, #242a3d, ${K.ink} 78%)`,
+        }}
+      />
+      {/* The colour. Heavily blurred and low opacity: it should read as light in
+          the room, never as a shape you can point at. */}
+      <AbsoluteFill style={{ filter: 'blur(80px)', opacity: 0.95 }}>
+        <div
+          style={{
+            position: 'absolute',
+            left: `${a.x}%`, top: `${a.y}%`, width: '62%', height: '38%',
+            transform: 'translate(-50%, -50%)', borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(91,140,255,0.85), rgba(91,140,255,0) 72%)',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            left: `${b.x}%`, top: `${b.y}%`, width: '54%', height: '32%',
+            transform: 'translate(-50%, -50%)', borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(132,86,240,0.70), rgba(132,86,240,0) 72%)',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            left: `${c.x}%`, top: `${c.y}%`, width: '46%', height: '28%',
+            transform: 'translate(-50%, -50%)', borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(46,204,143,0.48), rgba(46,204,143,0) 72%)',
+          }}
+        />
+      </AbsoluteFill>
+      {/* Vignette last, so it darkens the blobs too and the corners stay put. */}
+      <AbsoluteFill
+        style={{
+          background: 'radial-gradient(ellipse 86% 70% at 50% 48%, rgba(0,0,0,0) 58%, rgba(0,0,0,0.48) 100%)',
         }}
       />
       {children}
