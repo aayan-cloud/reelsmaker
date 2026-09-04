@@ -72,15 +72,20 @@ export const Room: React.FC<{ children?: React.ReactNode; bloom?: number }> = ({
 };
 
 /** Serif headline, the reference's voice. Title case, not shouting. */
-export const Head: React.FC<{ text: string; size?: number; y?: number; accentWord?: string }> = ({
-  text,
-  size = 84,
-  y = 0,
-  accentWord,
-}) => {
+export const Head: React.FC<{
+  text: string;
+  size?: number;
+  y?: number;
+  accentWord?: string;
+  /** Skip the entrance. The FIRST frame of a reel must already be full - a
+   *  headline fading up over 14 frames means the opening half-second, the only
+   *  part most viewers see, is an empty screen. */
+  instant?: boolean;
+  sub?: string;
+}> = ({ text, size = 84, y = 0, accentWord, instant = false, sub }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const s = spring({ frame, fps, config: { damping: 200 }, durationInFrames: 14 });
+  const s = instant ? 1 : spring({ frame, fps, config: { damping: 200 }, durationInFrames: 14 });
 
   return (
     <AbsoluteFill
@@ -104,6 +109,12 @@ export const Head: React.FC<{ text: string; size?: number; y?: number; accentWor
             {word}{' '}
           </span>
         ))}
+        {/* The subline belongs to the headline, so it is grouped with it rather
+            than pinned to the bottom of the frame. Stranding it 30% away reads
+            as two unrelated things that happen to share a screen. */}
+        {sub ? (
+          <div style={{ marginTop: 26, fontSize: size * 0.36, color: W.muted, lineHeight: 1.3 }}>{sub}</div>
+        ) : null}
       </div>
     </AbsoluteFill>
   );
@@ -122,10 +133,19 @@ export const Prompt: React.FC<{
   cps?: number;
   model?: string;
   y?: number;
-}> = ({ text, placeholder = 'How can I help you today?', startAt = 0, cps = 26, model = 'reelsmaker', y = 0 }) => {
+  instant?: boolean;
+}> = ({
+  text,
+  placeholder = 'How can I help you today?',
+  startAt = 0,
+  cps = 26,
+  model = 'reelsmaker',
+  y = 0,
+  instant = false,
+}) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const enter = spring({ frame, fps, config: { damping: 200 }, durationInFrames: 16 });
+  const enter = instant ? 1 : spring({ frame, fps, config: { damping: 200 }, durationInFrames: 16 });
 
   const typed = Math.max(0, Math.floor(((frame - startAt) / fps) * cps));
   const shown = text.slice(0, typed);

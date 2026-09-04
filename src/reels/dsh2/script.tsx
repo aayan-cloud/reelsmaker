@@ -51,7 +51,8 @@ export const beats: Beat[] = [
     sfx: [{ src: 'sfx/sub.wav', at: 0, volume: 0.3 }],
     Visual: () => (
       <Room>
-        <Head text="What should we make today?" size={76} y={-16} />
+        <Head text="What should we make today?" size={76} y={-16} instant />
+        <Prompt text="" startAt={9999} y={2} instant />
       </Room>
     ),
   },
@@ -66,8 +67,8 @@ export const beats: Beat[] = [
     sfx: typing(0.35, 14, 0.11),
     Visual: () => (
       <Room>
-        <Head text="What should we make today?" size={76} y={-16} />
-        <Prompt text={PROMPT} startAt={10} cps={22} y={2} />
+        <Head text="What should we make today?" size={76} y={-16} instant />
+        <Prompt text={PROMPT} startAt={10} cps={22} y={2} instant />
       </Room>
     ),
   },
@@ -182,14 +183,14 @@ export const beats: Beat[] = [
           {
             node: (
               <Room bloom={1.3}>
-                <Head text="Comment REELS" size={92} y={-8} accentWord="REELS" />
-                <AbsoluteFill
-                  style={{ justifyContent: 'flex-end', alignItems: 'center', paddingBottom: '30%' }}
-                >
-                  <div style={{ fontFamily: 'Georgia, serif', fontSize: 40, color: W.muted }}>
-                    and it lands in your DMs
-                  </div>
-                </AbsoluteFill>
+                <Head
+                  text="Comment REELS"
+                  sub="and it lands in your DMs"
+                  size={92}
+                  y={-4}
+                  accentWord="REELS"
+                  instant
+                />
                 <AbsoluteFill
                   style={{ justifyContent: 'flex-end', alignItems: 'center', paddingBottom: '16%' }}
                 >
