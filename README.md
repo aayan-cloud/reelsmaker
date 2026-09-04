@@ -10,7 +10,7 @@ node tools/fetch-assets.js               # images + music, from their original s
 node tools/sfx.js                        # sound effects, synthesised locally
 node tools/vo.js repurposer              # voice-over, free Edge neural TTS
 npm run dev                              # studio at localhost:3000
-npx remotion render Repurposer out/reel.mp4
+npx remotion render Repurposer out/video/reel.mp4
 ```
 
 **Nothing in that chain needs an account or an API key.** The voice is Microsoft
@@ -62,6 +62,19 @@ every one.
 produced on a live run. A reel is packaging; the measured result is the product.
 Invent one number to make a beat land better and the whole thing becomes
 indistinguishable from the slop it is competing against.
+
+---
+
+## Output layout
+
+```
+out/
+  frames/   stills from `remotion still` - check shots before a full render
+  video/    finished MP4s
+```
+
+Both are gitignored. A still costs about a second and a full render a minute or
+more, so check frames first and often.
 
 ---
 
@@ -123,8 +136,8 @@ why. Close over the beats in a wrapper component instead, as above.
 ### 3. Render
 
 ```bash
-npx remotion still MyReel out/check.png --frame=90   # ~1s, check a frame
-npx remotion render MyReel out/my-reel.mp4           # ~90s for 30s of video
+npx remotion still MyReel out/frames/check.png --frame=90   # ~1s, check a frame
+npx remotion render MyReel out/video/my-reel.mp4           # ~90s for 30s of video
 ```
 
 Always still-check a frame from each beat before committing to a full render.
