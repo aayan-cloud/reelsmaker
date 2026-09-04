@@ -1,0 +1,15 @@
+{
+  "rate": "+12%",
+  "pitch": "-4Hz",
+  "lines": [
+    { "id": "01", "text": "DeepSeek dropped an agent harness three weeks ago." },
+    { "id": "02", "text": "Two hundred and eleven thousand stars already." },
+    { "id": "03", "text": "Everything inside it is a plugin, so thirteen thousand people started building for it." },
+    { "id": "04", "text": "I went looking for the thing nobody had made yet." },
+    { "id": "05", "text": "Every voice plugin in there wants an API key." },
+    { "id": "06", "text": "So I built one that does not." },
+    { "id": "07", "text": "Give it a few lines, and it renders a finished reel." },
+    { "id": "08", "text": "Free voice, real captions, running on your own laptop." },
+    { "id": "09", "text": "Comment reels, and it lands in your DMs." }
+  ]
+}

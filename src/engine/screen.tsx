@@ -1,5 +1,5 @@
 import React from 'react';
-import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig, interpolate, spring } from 'remotion';
+import { AbsoluteFill, Img, Sequence, staticFile, useCurrentFrame, useVideoConfig, interpolate, spring } from 'remotion';
 
 /**
  * Real captured footage, shown as footage.
@@ -192,6 +192,47 @@ export const Statement: React.FC<{
           );
         })}
       </div>
+    </AbsoluteFill>
+  );
+};
+
+/**
+ * Cut between shots INSIDE a single beat.
+ *
+ * WHY THIS EXISTS
+ *
+ * Shot-by-shot analysis of the two biggest outliers in this niche (376x and
+ * 126x) shows both cut every 1.0-2.5 seconds, averaging about 1.5, and both
+ * strictly alternate an anchor shot with full-screen footage. The reels in this
+ * project held ONE composition for a whole 3-4 second beat, which is roughly
+ * three times too slow and reads as a slideshow beside them.
+ *
+ * The beat is still the unit of audio and caption - it has to be, because its
+ * length comes from the measured voice line. This splits the PICTURE inside
+ * that beat by weight, so cutting faster never desynchronises the voice.
+ */
+export const Cuts: React.FC<{ shots: { weight?: number; node: React.ReactNode }[] }> = ({ shots }) => {
+  const { durationInFrames } = useVideoConfig();
+  const total = shots.reduce((n, s) => n + (s.weight ?? 1), 0);
+
+  let cursor = 0;
+  return (
+    <AbsoluteFill>
+      {shots.map((shot, i) => {
+        const from = cursor;
+        // The last shot absorbs the rounding remainder, so the picture always
+        // fills the beat exactly rather than flashing a frame of nothing.
+        const span =
+          i === shots.length - 1
+            ? durationInFrames - from
+            : Math.round((durationInFrames * (shot.weight ?? 1)) / total);
+        cursor += span;
+        return (
+          <Sequence key={i} from={from} durationInFrames={Math.max(1, span)} name={`Shot ${i + 1}`}>
+            {shot.node}
+          </Sequence>
+        );
+      })}
     </AbsoluteFill>
   );
 };

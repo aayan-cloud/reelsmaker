@@ -7,6 +7,7 @@ import { WorkflowTour, TOUR_SECONDS } from './reels/workflow-tour/Tour';
 import { beats as repurposer } from './reels/repurposer/script';
 import { beats as reelsmaker } from './reels/reelsmaker/script';
 import { FbCover } from './reels/reelsmaker/cover';
+import { beats as dshReel } from './reels/dsh/script';
 import { K } from './engine/kinetic';
 
 const FPS = 30;
@@ -33,6 +34,11 @@ const Repurposer: React.FC = () => (
     captionColor={K.text}
     captionAccent={K.accent}
   />
+);
+// Reel 06. Cuts at least twice per beat, which is what the shot-by-shot
+// analysis of the two biggest outliers in this niche showed them doing.
+const DshReel: React.FC = () => (
+  <Reel beats={dshReel} music="music/deep-urban.mp3" musicVolume={0.15} />
 );
 // Narrated, so the music drops under the voice. The lines were written to fit
 // beats that were already short, rather than letting the voice set the length.
@@ -71,6 +77,14 @@ export const RemotionRoot: React.FC = () => (
       id="WorkflowTour"
       component={WorkflowTour}
       durationInFrames={Math.round(TOUR_SECONDS * FPS)}
+      fps={FPS}
+      width={1080}
+      height={1920}
+    />
+    <Composition
+      id="Dsh"
+      component={DshReel}
+      durationInFrames={totalFrames(dshReel, FPS)}
       fps={FPS}
       width={1080}
       height={1920}

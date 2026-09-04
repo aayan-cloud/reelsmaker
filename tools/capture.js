@@ -52,7 +52,14 @@ const W = Number(process.env.CAP_W || 1920);
 const H = Number(process.env.CAP_H || 1080);
 
 const flags = process.argv.filter((a) => a.startsWith('--'));
-const args = process.argv.slice(2).filter((a) => !a.startsWith('--'));
+// Flags AND their values are dropped, so positional args keep their places.
+// Filtering only on the leading "--" made `--click Continue` shift the url into
+// the name slot, and the failure surfaced as a nonsense mkdir path.
+const VALUE_FLAGS = ['--click'];
+const args = process.argv.slice(2).filter((a, i, all) => {
+  if (a.startsWith('--')) return false;
+  return !VALUE_FLAGS.includes(all[i - 1]);
+});
 const loginMode = flags.includes('--login');
 const useMain = flags.includes('--main');
 const [workflowId, name, frameCount, everyMs] = args;
@@ -162,6 +169,23 @@ const fitCanvas = (page, zoom) =>
     fs.mkdirSync(dir, { recursive: true });
     await page.goto(url, { waitUntil: 'networkidle2' });
     await new Promise((r) => setTimeout(r, 1200));
+
+    // --click "<text>" dismisses whatever is covering the thing worth filming.
+    // Real apps open consent notices and first-run dialogs, and a capture of a
+    // modal is a capture of nothing.
+    const clickIdx = process.argv.indexOf('--click');
+    if (clickIdx > -1 && process.argv[clickIdx + 1]) {
+      const label = process.argv[clickIdx + 1];
+      const hit = await page.evaluate((want) => {
+        const el = [...document.querySelectorAll('button, [role=button], a')].find(
+          (b) => b.textContent.trim().toLowerCase() === want.toLowerCase(),
+        );
+        if (el) el.click();
+        return !!el;
+      }, label);
+      console.log(hit ? 'dismissed: ' + label : 'no element labelled ' + label);
+      await new Promise((r) => setTimeout(r, 1500));
+    }
 
     // --play captures a moving page instead of a scrolling one. Space is
     // Remotion Studio's play shortcut, and pressing it beats hunting for a
