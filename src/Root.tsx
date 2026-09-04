@@ -8,6 +8,8 @@ import { beats as repurposer } from './reels/repurposer/script';
 import { beats as reelsmaker } from './reels/reelsmaker/script';
 import { FbCover } from './reels/reelsmaker/cover';
 import { beats as dshReel } from './reels/dsh/script';
+import { Probe } from './reels/dsh2/probe';
+import { beats as dsh2Reel } from './reels/dsh2/script';
 import { K } from './engine/kinetic';
 
 const FPS = 30;
@@ -34,6 +36,11 @@ const Repurposer: React.FC = () => (
     captionColor={K.text}
     captionAccent={K.accent}
   />
+);
+// Reel 07, in the reference style: a built interface rather than captured
+// screenshots. Music sits low because the sound design carries this one.
+const Dsh2Reel: React.FC = () => (
+  <Reel beats={dsh2Reel} music="music/hazy-after-hours.mp3" musicVolume={0.13} />
 );
 // Reel 06. Cuts at least twice per beat, which is what the shot-by-shot
 // analysis of the two biggest outliers in this niche showed them doing.
@@ -81,6 +88,15 @@ export const RemotionRoot: React.FC = () => (
       width={1080}
       height={1920}
     />
+    <Composition
+      id="Dsh2"
+      component={Dsh2Reel}
+      durationInFrames={totalFrames(dsh2Reel, FPS)}
+      fps={FPS}
+      width={1080}
+      height={1920}
+    />
+    <Composition id="Probe" component={Probe} durationInFrames={90} fps={FPS} width={1080} height={1920} />
     <Composition
       id="Dsh"
       component={DshReel}

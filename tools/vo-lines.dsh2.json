@@ -1,0 +1,10 @@
+{
+  "rate": "+10%",
+  "pitch": "-4Hz",
+  "lines": [
+    { "id": "01", "text": "DeepSeek's new harness lets anything be a plugin." },
+    { "id": "02", "text": "So I built one that turns a line of text into a reel." },
+    { "id": "03", "text": "Free voice, real captions, and no API key." },
+    { "id": "04", "text": "Comment reels, and it lands in your DMs." }
+  ]
+}
