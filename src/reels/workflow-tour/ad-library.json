@@ -1,0 +1,341 @@
+{
+ "name": "Ad Library → No-Website Leads",
+ "nodes": [
+  {
+   "id": "Run Now",
+   "type": "manualTrigger",
+   "x": -460,
+   "y": 0,
+   "disabled": false
+  },
+  {
+   "id": "Run Weekly",
+   "type": "scheduleTrigger",
+   "x": -460,
+   "y": 180,
+   "disabled": true
+  },
+  {
+   "id": "Settings - Edit These",
+   "type": "set",
+   "x": -240,
+   "y": 60,
+   "disabled": false
+  },
+  {
+   "id": "Preflight - Browserless",
+   "type": "httpRequest",
+   "x": -20,
+   "y": 60,
+   "disabled": false
+  },
+  {
+   "id": "Build Search Job",
+   "type": "code",
+   "x": 190,
+   "y": 60,
+   "disabled": false
+  },
+  {
+   "id": "Browserless - Search Ad Library",
+   "type": "httpRequest",
+   "x": 420,
+   "y": 60,
+   "disabled": false
+  },
+  {
+   "id": "Filter + Group Advertisers",
+   "type": "code",
+   "x": 640,
+   "y": 60,
+   "disabled": false
+  },
+  {
+   "id": "Loop Pages",
+   "type": "splitInBatches",
+   "x": 860,
+   "y": 60,
+   "disabled": false
+  },
+  {
+   "id": "Build Page Check Job",
+   "type": "code",
+   "x": 1080,
+   "y": 200,
+   "disabled": false
+  },
+  {
+   "id": "Browserless - Check Pages",
+   "type": "httpRequest",
+   "x": 1300,
+   "y": 200,
+   "disabled": false
+  },
+  {
+   "id": "Parse Page Results",
+   "type": "code",
+   "x": 1520,
+   "y": 200,
+   "disabled": false
+  },
+  {
+   "id": "Qualify + Tag",
+   "type": "code",
+   "x": 1080,
+   "y": -80,
+   "disabled": false
+  },
+  {
+   "id": "Needs Liveness Check?",
+   "type": "if",
+   "x": 1300,
+   "y": -80,
+   "disabled": false
+  },
+  {
+   "id": "Check Site Alive",
+   "type": "httpRequest",
+   "x": 1520,
+   "y": -180,
+   "disabled": false
+  },
+  {
+   "id": "Shape Site Response",
+   "type": "code",
+   "x": 1740,
+   "y": -180,
+   "disabled": false
+  },
+  {
+   "id": "Classify Site Health",
+   "type": "code",
+   "x": 1960,
+   "y": -180,
+   "disabled": false
+  },
+  {
+   "id": "Merge Lead Streams",
+   "type": "merge",
+   "x": 2180,
+   "y": -80,
+   "disabled": false
+  },
+  {
+   "id": "Score + Rank",
+   "type": "code",
+   "x": 2400,
+   "y": -80,
+   "disabled": false
+  },
+  {
+   "id": "Read Ledger",
+   "type": "readWriteFile",
+   "x": 2620,
+   "y": 120,
+   "disabled": false
+  },
+  {
+   "id": "Ledger From JSON",
+   "type": "extractFromFile",
+   "x": 2620,
+   "y": 260,
+   "disabled": false
+  },
+  {
+   "id": "Tag New vs Seen",
+   "type": "code",
+   "x": 2620,
+   "y": 400,
+   "disabled": false
+  },
+  {
+   "id": "Sort by Score",
+   "type": "sort",
+   "x": 2620,
+   "y": -80,
+   "disabled": false
+  },
+  {
+   "id": "Build Outreach",
+   "type": "code",
+   "x": 3280,
+   "y": -80,
+   "disabled": false
+  },
+  {
+   "id": "Shape Rows",
+   "type": "code",
+   "x": 3500,
+   "y": -80,
+   "disabled": false
+  },
+  {
+   "id": "Append to Google Sheet",
+   "type": "googleSheets",
+   "x": 4160,
+   "y": 140,
+   "disabled": true
+  },
+  {
+   "id": "To CSV",
+   "type": "convertToFile",
+   "x": 3720,
+   "y": -80,
+   "disabled": false
+  },
+  {
+   "id": "Build Ledger",
+   "type": "code",
+   "x": 3940,
+   "y": 140,
+   "disabled": false
+  },
+  {
+   "id": "Ledger To File",
+   "type": "convertToFile",
+   "x": 3940,
+   "y": 280,
+   "disabled": false
+  },
+  {
+   "id": "Save Ledger",
+   "type": "readWriteFile",
+   "x": 3940,
+   "y": 420,
+   "disabled": false
+  },
+  {
+   "id": "Save Leads CSV",
+   "type": "readWriteFile",
+   "x": 3940,
+   "y": -80,
+   "disabled": false
+  }
+ ],
+ "edges": [
+  {
+   "from": "Run Now",
+   "to": "Settings - Edit These"
+  },
+  {
+   "from": "Run Weekly",
+   "to": "Settings - Edit These"
+  },
+  {
+   "from": "Settings - Edit These",
+   "to": "Preflight - Browserless"
+  },
+  {
+   "from": "Preflight - Browserless",
+   "to": "Build Search Job"
+  },
+  {
+   "from": "Build Search Job",
+   "to": "Browserless - Search Ad Library"
+  },
+  {
+   "from": "Browserless - Search Ad Library",
+   "to": "Filter + Group Advertisers"
+  },
+  {
+   "from": "Filter + Group Advertisers",
+   "to": "Loop Pages"
+  },
+  {
+   "from": "Loop Pages",
+   "to": "Qualify + Tag"
+  },
+  {
+   "from": "Loop Pages",
+   "to": "Build Page Check Job"
+  },
+  {
+   "from": "Build Page Check Job",
+   "to": "Browserless - Check Pages"
+  },
+  {
+   "from": "Browserless - Check Pages",
+   "to": "Parse Page Results"
+  },
+  {
+   "from": "Parse Page Results",
+   "to": "Loop Pages"
+  },
+  {
+   "from": "Qualify + Tag",
+   "to": "Needs Liveness Check?"
+  },
+  {
+   "from": "Needs Liveness Check?",
+   "to": "Check Site Alive"
+  },
+  {
+   "from": "Needs Liveness Check?",
+   "to": "Merge Lead Streams"
+  },
+  {
+   "from": "Check Site Alive",
+   "to": "Shape Site Response"
+  },
+  {
+   "from": "Shape Site Response",
+   "to": "Classify Site Health"
+  },
+  {
+   "from": "Classify Site Health",
+   "to": "Merge Lead Streams"
+  },
+  {
+   "from": "Merge Lead Streams",
+   "to": "Score + Rank"
+  },
+  {
+   "from": "Score + Rank",
+   "to": "Read Ledger"
+  },
+  {
+   "from": "Read Ledger",
+   "to": "Ledger From JSON"
+  },
+  {
+   "from": "Ledger From JSON",
+   "to": "Tag New vs Seen"
+  },
+  {
+   "from": "Tag New vs Seen",
+   "to": "Sort by Score"
+  },
+  {
+   "from": "Sort by Score",
+   "to": "Build Outreach"
+  },
+  {
+   "from": "Build Outreach",
+   "to": "Shape Rows"
+  },
+  {
+   "from": "Shape Rows",
+   "to": "To CSV"
+  },
+  {
+   "from": "Shape Rows",
+   "to": "Append to Google Sheet"
+  },
+  {
+   "from": "To CSV",
+   "to": "Save Leads CSV"
+  },
+  {
+   "from": "Save Leads CSV",
+   "to": "Build Ledger"
+  },
+  {
+   "from": "Build Ledger",
+   "to": "Ledger To File"
+  },
+  {
+   "from": "Ledger To File",
+   "to": "Save Ledger"
+  }
+ ]
+}

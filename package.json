@@ -1,0 +1,31 @@
+{
+  "name": "reelsmaker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Short-form reels rendered from React. Film grade, burned-in captions, free neural voice-over, no API keys.",
+  "scripts": {
+    "dev": "remotion studio",
+    "render": "remotion render",
+    "still": "remotion still",
+    "assets": "node tools/fetch-assets.js",
+    "sfx": "node tools/sfx.js",
+    "vo": "node tools/vo.js"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.520",
+    "@remotion/google-fonts": "4.0.520",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.520"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "msedge-tts": "^2.0.7",
+    "puppeteer-core": "^25.9.0",
+    "typescript": "5.8.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true
+  },
+  "license": "MIT"
+}

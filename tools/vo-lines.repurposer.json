@@ -1,0 +1,30 @@
+{
+  "rate": "+12%",
+  "pitch": "-4Hz",
+  "lines": [
+    {
+      "id": "01",
+      "text": "This turns any link into five hooks and a caption."
+    },
+    {
+      "id": "02",
+      "text": "Every other tool that does it wants an API key."
+    },
+    {
+      "id": "03",
+      "text": "ChatGPT, Gemini, OpenAI, and they all bill you per run."
+    },
+    {
+      "id": "04",
+      "text": "This one runs on my own laptop."
+    },
+    {
+      "id": "05",
+      "text": "Paste a video or an article and ninety seconds later it is done."
+    },
+    {
+      "id": "06",
+      "text": "Zero cost per run, and it is open source."
+    }
+  ]
+}

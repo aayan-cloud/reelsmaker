@@ -1,0 +1,13 @@
+node_modules/
+out/
+.remotion/
+
+# Media is not committed: a 55MB clone helps nobody, and redistributing someone
+# else's photo library is a different licence question from linking to it.
+# SOURCES.txt records every URL, so `node tools/fetch-assets.js` rebuilds it.
+assets/*
+!assets/SOURCES.txt
+!assets/LICENSES.md
+
+# Per-reel caption drafts are channel marketing notes, not part of the tool.
+src/reels/**/caption.md
