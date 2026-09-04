@@ -2,10 +2,25 @@
   "rate": "+14%",
   "pitch": "-4Hz",
   "lines": [
-    { "id": "01", "text": "Every reel on this page is just a text file." },
-    { "id": "02", "text": "No editor, and nothing dragged onto a timeline." },
-    { "id": "03", "text": "One command, and ninety four seconds later it is done." },
-    { "id": "04", "text": "Free, and open source." },
-    { "id": "05", "text": "Comment reels." }
+    {
+      "id": "01",
+      "text": "Every reel on this page is just a text file."
+    },
+    {
+      "id": "02",
+      "text": "No editor, and nothing dragged onto a timeline."
+    },
+    {
+      "id": "03",
+      "text": "One command, and ninety four seconds later it is done."
+    },
+    {
+      "id": "04",
+      "text": "Free, and open source."
+    },
+    {
+      "id": "05",
+      "text": "Comment reels, and it lands in your DMs."
+    }
   ]
 }

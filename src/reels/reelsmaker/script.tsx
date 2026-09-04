@@ -138,7 +138,8 @@ export const beats: Beat[] = [
     sfx: [{ src: 'sfx/sub.wav', at: 0, volume: 0.4 }],
     Visual: () => (
       <AbsoluteFill style={{ backgroundColor: '#08080b' }}>
-        <Statement lines={['comment', 'REELS']} y={-6} size={132} hot={1} accent="#5b8cff" />
+        <Statement lines={['comment', 'REELS']} y={-10} size={128} hot={1} accent="#5b8cff" />
+        <Statement lines={['and it lands in your DMs']} y={7} size={44} />
         <AbsoluteFill style={{ justifyContent: 'flex-end', alignItems: 'center', paddingBottom: '18%' }}>
           <div style={{ fontFamily: 'Consolas, Menlo, monospace', fontSize: 40, color: 'rgba(255,255,255,0.6)' }}>
             @aayanrealm
