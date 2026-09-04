@@ -62,14 +62,18 @@ export const beats: Beat[] = [
     sfx: [{ src: 'sfx/whoosh.wav', at: 0, volume: 0.3 }],
     Visual: () => (
       <Stage>
-        <CodeCard code={REAL_CODE} y={-9} width={88} size={28} />
-        <ScreenCard y={27} width={82} tilt={-1.2} index={1}>
+        <ScreenCard y={-14} width={90} tilt={-1} index={0}>
           <OffthreadVideo
             src={staticFile('clips/repurposer.mp4')}
+            // Start two seconds in. From its own frame 0 the clip is still
+            // tumbling type onto black, so the half of the comparison that is
+            // supposed to sell this was empty for the whole hook window.
+            startFrom={60}
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             muted
           />
         </ScreenCard>
+        <CodeCard code={REAL_CODE} y={28} width={84} size={22} />
         <Statement lines={['this reel', 'is a text file']} y={-40} size={84} hot={1} accent="#5b8cff" />
       </Stage>
     ),
