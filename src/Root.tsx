@@ -5,6 +5,7 @@ import { beats as noWebsite } from './reels/no-website/script';
 import { beats as metaAdLibrary } from './reels/meta-ad-library/script';
 import { WorkflowTour, TOUR_SECONDS } from './reels/workflow-tour/Tour';
 import { beats as repurposer } from './reels/repurposer/script';
+import { beats as reelsmaker } from './reels/reelsmaker/script';
 import { K } from './engine/kinetic';
 
 const FPS = 30;
@@ -31,6 +32,12 @@ const Repurposer: React.FC = () => (
     captionColor={K.text}
     captionAccent={K.accent}
   />
+);
+// Music only, no voice-over: the on-screen text carries it. Many of the biggest
+// outliers in this niche have no narration at all, and dropping the VO is what
+// lets this run 14 seconds instead of 25.
+const Reelsmaker: React.FC = () => (
+  <Reel beats={reelsmaker} music="music/cyberpunk-city.mp3" musicVolume={0.5} />
 );
 const MetaAdLibrary: React.FC = () => (
   <Reel beats={metaAdLibrary} music="music/discover.mp3" musicVolume={0.13} />
@@ -64,6 +71,14 @@ export const RemotionRoot: React.FC = () => (
       id="WorkflowTour"
       component={WorkflowTour}
       durationInFrames={Math.round(TOUR_SECONDS * FPS)}
+      fps={FPS}
+      width={1080}
+      height={1920}
+    />
+    <Composition
+      id="Reelsmaker"
+      component={Reelsmaker}
+      durationInFrames={totalFrames(reelsmaker, FPS)}
       fps={FPS}
       width={1080}
       height={1920}
