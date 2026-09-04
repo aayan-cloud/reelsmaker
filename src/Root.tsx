@@ -33,11 +33,10 @@ const Repurposer: React.FC = () => (
     captionAccent={K.accent}
   />
 );
-// Music only, no voice-over: the on-screen text carries it. Many of the biggest
-// outliers in this niche have no narration at all, and dropping the VO is what
-// lets this run 14 seconds instead of 25.
+// Narrated, so the music drops under the voice. The lines were written to fit
+// beats that were already short, rather than letting the voice set the length.
 const Reelsmaker: React.FC = () => (
-  <Reel beats={reelsmaker} music="music/cyberpunk-city.mp3" musicVolume={0.5} />
+  <Reel beats={reelsmaker} music="music/cyberpunk-city.mp3" musicVolume={0.17} />
 );
 const MetaAdLibrary: React.FC = () => (
   <Reel beats={metaAdLibrary} music="music/discover.mp3" musicVolume={0.13} />

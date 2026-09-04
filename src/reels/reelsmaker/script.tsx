@@ -2,6 +2,7 @@ import React from 'react';
 import { AbsoluteFill, OffthreadVideo, staticFile } from 'remotion';
 import type { Beat } from '../../engine/Reel';
 import { FrameSequence, ScreenCard, CodeCard, Statement } from '../../engine/screen';
+import D from '../../../tools/vo-durations.reelsmaker.json';
 
 /**
  * Reel 05 - Reelsmaker.
@@ -20,9 +21,10 @@ import { FrameSequence, ScreenCard, CodeCard, Statement } from '../../engine/scr
  *   2. SHORTER, AND LOOPING. The top performers run 7-23 seconds with
  *      `is_looped: true`. The earlier reels here ran 23-30s. This is 14.
  *
- *   3. MUSIC ONLY. Many of the biggest had no voiceover at all, so the on-screen
- *      text carries the story. That also removes the VO timing constraint, which
- *      is what forced the older reels to be long in the first place.
+ *   3. SHORT LINES. Many of the biggest outliers had no narration at all. This
+ *      keeps a voice, because the channel has one, but the lines are written to
+ *      fit beats that were already short rather than the other way round - which
+ *      is what made the earlier reels here run long.
  *
  * Every number is measured. 94 seconds is the real render time of the Repurposer
  * reel on this machine, timed on 2026-09-04; 23 seconds is its real length. The
@@ -30,7 +32,9 @@ import { FrameSequence, ScreenCard, CodeCard, Statement } from '../../engine/scr
  */
 
 const FPS = 30;
-const sec = (n: number) => n;
+// Beats are timed from the measured length of each voice MP3, never a round
+// number. Timing a beat to a guess is how a line gets cut off mid-word.
+const sec = (n: number) => n + 0.3;
 
 // A real beat from the Repurposer script - the file that produced the video
 // playing beside it. Trimmed to what fits on a phone screen, nothing invented.
@@ -50,8 +54,9 @@ export const beats: Beat[] = [
   // No build-up. The outliers put the before and the after on screen in the first
   // frame, and so does this.
   {
-    seconds: sec(4),
+    seconds: sec(D['01']),
     caption: '',
+    vo: 'vo/reelsmaker/01.mp3',
     look: 'clean',
     sfx: [{ src: 'sfx/whoosh.wav', at: 0, volume: 0.3 }],
     Visual: () => (
@@ -71,8 +76,9 @@ export const beats: Beat[] = [
 
   // --- the tool, actually running ------------------------------------------------
   {
-    seconds: sec(3.5),
+    seconds: sec(D['02']),
     caption: '',
+    vo: 'vo/reelsmaker/02.mp3',
     look: 'clean',
     sfx: [{ src: 'sfx/tick.wav', at: 0.1, volume: 0.35 }],
     Visual: () => (
@@ -91,8 +97,9 @@ export const beats: Beat[] = [
 
   // --- the measured payoff ---------------------------------------------------------
   {
-    seconds: sec(3),
+    seconds: sec(D['03']),
     caption: '',
+    vo: 'vo/reelsmaker/03.mp3',
     look: 'clean',
     sfx: [{ src: 'sfx/impact.wav', at: 0, volume: 0.4 }],
     Visual: () => (
@@ -105,8 +112,9 @@ export const beats: Beat[] = [
 
   // --- free, and the proof is a real repo ---------------------------------------------
   {
-    seconds: sec(2.5),
+    seconds: sec(D['04']),
     caption: '',
+    vo: 'vo/reelsmaker/04.mp3',
     look: 'clean',
     sfx: [{ src: 'sfx/riser.wav', at: 0.2, volume: 0.25 }],
     Visual: () => (
@@ -123,8 +131,9 @@ export const beats: Beat[] = [
   // "Comment WORD and I'll send it" appeared in the 886K reel, the 336K one and
   // four others. A bio link appeared in none of them.
   {
-    seconds: sec(1.5),
+    seconds: sec(D['05']),
     caption: '',
+    vo: 'vo/reelsmaker/05.mp3',
     look: 'clean',
     sfx: [{ src: 'sfx/sub.wav', at: 0, volume: 0.4 }],
     Visual: () => (
