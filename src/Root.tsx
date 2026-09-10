@@ -10,7 +10,11 @@ import { FbCover } from './reels/reelsmaker/cover';
 import { beats as dshReel } from './reels/dsh/script';
 import { Probe } from './reels/dsh2/probe';
 import { beats as dsh2Reel } from './reels/dsh2/script';
+import { beats as sunbizReel } from './reels/sunbiz/script';
+import { beats as stopAskingReel } from './reels/stopasking/script';
+import { beats as presenterReel } from './reels/presenter/script';
 import { K } from './engine/kinetic';
+import { Scroll } from './reels/mockups/Scroll';
 
 const FPS = 30;
 
@@ -41,6 +45,31 @@ const Repurposer: React.FC = () => (
 // screenshots. Music sits low because the sound design carries this one.
 const Dsh2Reel: React.FC = () => (
   <Reel beats={dsh2Reel} music="music/hazy-after-hours.mp3" musicVolume={0.13} />
+);
+// Reel 08 is an accusation, so it gets the coldest bed in the library rather than
+// the warm keynote ones - the music has to agree with the tone or the whole thing
+// reads as a tutorial with a rude title.
+const SunbizReel: React.FC = () => (
+  <Reel beats={sunbizReel} music="music/deep-techno-ambience.mp3" musicVolume={0.14} />
+);
+/**
+ * Reel 09 is an accusation at speed, so it needs a driving bed rather than an ambient
+ * one - the calm library tracks read as a documentary and undercut the tone.
+ *
+ * Four more Mixkit tracks sit in assets/music as mixkit-121, -180, -480 and -613
+ * (all Mixkit Free Licence, commercial use, no attribution). Changing the bed is this
+ * one string; nothing else in the reel depends on it.
+ */
+const StopAskingReel: React.FC = () => (
+  <Reel beats={stopAskingReel} music="music/mixkit-121.mp3" musicVolume={0.17} />
+);
+/**
+ * Reel 10, the reference format: screen on top, presenter underneath the whole way.
+ * The lower band is a labelled placeholder until assets/clips/aayan.mp4 exists - swap
+ * `PresenterSlot` for `Presenter` in the script and nothing else has to change.
+ */
+const PresenterReel: React.FC = () => (
+  <Reel beats={presenterReel} music="music/mixkit-121.mp3" musicVolume={0.15} />
 );
 // Reel 06. Cuts at least twice per beat, which is what the shot-by-shot
 // analysis of the two biggest outliers in this niche showed them doing.
@@ -96,6 +125,30 @@ export const RemotionRoot: React.FC = () => (
       width={1080}
       height={1920}
     />
+    <Composition
+      id="Sunbiz"
+      component={SunbizReel}
+      durationInFrames={totalFrames(sunbizReel, FPS)}
+      fps={FPS}
+      width={1080}
+      height={1920}
+    />
+    <Composition
+      id="StopAsking"
+      component={StopAskingReel}
+      durationInFrames={totalFrames(stopAskingReel, FPS)}
+      fps={FPS}
+      width={1080}
+      height={1920}
+    />
+    <Composition
+      id="Presenter"
+      component={PresenterReel}
+      durationInFrames={totalFrames(presenterReel, FPS)}
+      fps={FPS}
+      width={1080}
+      height={1920}
+    />
     <Composition id="Probe" component={Probe} durationInFrames={90} fps={FPS} width={1080} height={1920} />
     <Composition
       id="Dsh"
@@ -124,5 +177,10 @@ export const RemotionRoot: React.FC = () => (
       width={1080}
       height={1920}
     />
+    <Composition id="MockSalon" component={Scroll} durationInFrames={420} fps={FPS} width={1080} height={1920} defaultProps={{ src: "mockups/allenora-salon.png", pageHeight: 2828, label: "Alle'nora Annie's Signature Salon" }} />
+    <Composition id="MockAazz" component={Scroll} durationInFrames={420} fps={FPS} width={1080} height={1920} defaultProps={{ src: "mockups/aazz-studio.png", pageHeight: 3544, label: "Aazz Studio · Wedding Photography" }} />
+    <Composition id="MockBhatti" component={Scroll} durationInFrames={420} fps={FPS} width={1080} height={1920} defaultProps={{ src: "mockups/studio-bhatti.png", pageHeight: 2966, label: "Studio Bhatti Official" }} />
+    <Composition id="MockHammad" component={Scroll} durationInFrames={420} fps={FPS} width={1080} height={1920} defaultProps={{ src: "mockups/alhammad-interiors.png", pageHeight: 3512, label: "Al-Hammad Interiors & Architecture" }} />
+    <Composition id="MockSobia" component={Scroll} durationInFrames={420} fps={FPS} width={1080} height={1920} defaultProps={{ src: "mockups/sobia-hamza.png", pageHeight: 3418, label: "Sobia Hamza Couture Studio" }} />
   </>
 );

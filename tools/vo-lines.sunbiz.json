@@ -1,0 +1,12 @@
+{
+  "rate": "+12%",
+  "pitch": "-4Hz",
+  "lines": [
+    { "id": "01", "text": "Scraping government records for leads is a waste of time." },
+    { "id": "02", "text": "Florida publishes every new company, free. I checked a hundred and seventy six." },
+    { "id": "03", "text": "Seventeen percent were findable. Four point five percent were usable." },
+    { "id": "04", "text": "Then Google blocked me. Twenty two page loads, for one lead." },
+    { "id": "05", "text": "One category search returns sixty at once. Twenty times cheaper." },
+    { "id": "06", "text": "Twenty seven leads, with phone numbers. Comment LEADS for the code." }
+  ]
+}

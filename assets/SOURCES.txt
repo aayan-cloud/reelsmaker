@@ -25,3 +25,8 @@ music/digital-clouds.mp3  <- https://assets.mixkit.co/music/175/175.mp3  (Mixkit
 music/sci-fi-score.mp3  <- https://assets.mixkit.co/music/464/464.mp3  (Mixkit Free Licence: commercial use OK, no attribution required)
 music/deep-urban.mp3  <- https://assets.mixkit.co/music/623/623.mp3  (Mixkit Free Licence: commercial use OK, no attribution required)
 music/hazy-after-hours.mp3  <- https://assets.mixkit.co/music/132/132.mp3  (Mixkit Free Licence: commercial use OK, no attribution required)
+music/mixkit-121.mp3  <- https://assets.mixkit.co/music/121/121.mp3  (Mixkit Free Licence: commercial use OK, no attribution required)
+music/mixkit-180.mp3  <- https://assets.mixkit.co/music/180/180.mp3  (Mixkit Free Licence: commercial use OK, no attribution required)
+music/mixkit-480.mp3  <- https://assets.mixkit.co/music/480/480.mp3  (Mixkit Free Licence: commercial use OK, no attribution required)
+music/mixkit-613.mp3  <- https://assets.mixkit.co/music/613/613.mp3  (Mixkit Free Licence: commercial use OK, no attribution required)
+clips/mixkit-44748.mp4  <- https://assets.mixkit.co/videos/44748/44748-1080.mp4  (Mixkit Free Licence: commercial use OK, no attribution required) - stock actor, NOT Aayan
